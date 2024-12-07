@@ -17,7 +17,7 @@ class Djikstra {
     ];
   }
 
-  getPath() {
+  async getPath() {
     const distance = new Map();
     const visited = new Set(); // To track visited nodes
     const startNode = new Node(this.start[0], this.start[1], 0); // Start node with distance 0

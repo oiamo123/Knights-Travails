@@ -1,7 +1,6 @@
 import Board from "./Board.js";
 import Alert from "./Alert.js";
 import { knightIcon } from "./Icons.js";
-import PriorityQueue from "./PriorityQueue.js";
 
 class App {
   constructor() {
@@ -17,14 +16,14 @@ class App {
   }
 
   addEventHandlers() {
-    this.start.addEventListener(`click`, () => this.startHandler());
+    this.start.addEventListener(`click`, () => this.startHandler(false));
     this.reset.addEventListener(`click`, () => this.resetHandler());
     this.next.addEventListener(`click`, () => this.nextMove());
     this.prev.addEventListener(`click`, () => this.previousMove());
   }
 
-  startHandler() {
-    this.moves = this.board.startDjikstras().reverse();
+  async startHandler() {
+    this.moves = await this.board.startDjikstras();
     this.currentMoveIndex = 0;
     this.alert.clearAlert();
 

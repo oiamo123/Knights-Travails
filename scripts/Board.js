@@ -47,7 +47,7 @@ class Board {
           square.innerHTML = knightIcon;
         } else if (this.end === null) {
           if (x === this.start[0] && y === this.start[1]) {
-            this.addToAlert(`End cannot be the same as start`);
+            this.alert.addToAlert(`End cannot be the same as start`);
             return;
           }
 
@@ -59,9 +59,13 @@ class Board {
     });
   }
 
-  startDjikstras() {
+  async startDjikstras() {
+    if (this.start === null || this.end === null) {
+      this.alert.addToAlert("Please select a start and end square.");
+    }
+
     const djikstras = new Djikstra(this.board, this.start, this.end);
-    const path = djikstras.getPath();
+    const path = await djikstras.getPath();
     return path;
   }
 
@@ -75,8 +79,6 @@ class Board {
 
     this.start = null;
     this.end = null;
-
-    this.addEventListeners();
   }
 }
 
