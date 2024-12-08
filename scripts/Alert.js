@@ -1,17 +1,15 @@
-import { knightIcon } from "./Icons.js";
-
 class Alert {
   constructor() {
-    this.alert = document.querySelector(`.alert`);
+    this.alert = document.querySelector(`.moves`);
   }
 
   clearAlert() {
     this.alert.innerHTML = "";
-    this.addToAlert("Notifications:");
   }
 
   addToAlert(data, id = null) {
-    this.alert.innerHTML += `<p ${id !== null && `class=${id}`}>${data}</p>`;
+    const classAttr = id !== null ? `class="${id}"` : "";
+    this.alert.innerHTML += `<p ${classAttr}>${data}</p>`;
   }
 }
 

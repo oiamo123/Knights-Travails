@@ -41,6 +41,7 @@ class App {
 
     // Reset navigation button states
     this.updateNavigationButtons();
+    this.updateKnightPosition();
   }
 
   resetHandler() {
@@ -71,20 +72,13 @@ class App {
   updateKnightPosition() {
     this.board.clearBoard();
 
-    // Update the knight's position on the board
     const [x, y] = this.moves[this.currentMoveIndex];
     const square = document.querySelector(`[x="${x}"][y="${y}"]`);
-    square.innerHTML = knightIcon;
+    if (square) square.innerHTML = knightIcon;
 
-    // Highlight the current move in the alert
-    const alertParagraphs = document.querySelectorAll(".alert p");
-    alertParagraphs.forEach((p, index) => {
-      if (index === this.currentMoveIndex + 1) {
-        // +1 because the first <p> is "Notifications:"
-        p.classList.add("highlight");
-      } else {
-        p.classList.remove("highlight");
-      }
+    const moveParagraphs = document.querySelectorAll(".moves p");
+    moveParagraphs.forEach((p, index) => {
+      p.classList.toggle("highlight", index === this.currentMoveIndex);
     });
 
     this.updateNavigationButtons();

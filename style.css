@@ -1,3 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
 html {
   padding: none;
   margin: none;
@@ -6,24 +17,20 @@ html {
 }
 
 body {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: none;
-  margin: none;
-  border: none;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
   background-color: #27272a;
 }
 
 nav {
+  width: 100%;
   padding: 8px 0px;
   display: flex;
   position: absolute;
   justify-content: space-evenly;
   top: 0%;
-  width: 98vw;
+  width: 100vw;
 }
 
 button {
@@ -55,11 +62,13 @@ button:hover {
 }
 
 main {
+  display: grid;
   height: 100vh;
-  display: flex;
-  padding: 16px;
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 1fr);
   align-items: center;
+  justify-items: center;
+  flex-direction: column;
 }
 
 .board {
@@ -79,12 +88,21 @@ main {
 }
 
 aside {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 12fr 1fr;
-  width: 18vw;
-  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vmin;
+  height: 80vmin;
   background-color: #171717;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+aside p {
+  color: white;
+  font-size: 18px;
+  text-transform: uppercase;
+  justify-self: center;
 }
 
 .alert {
@@ -97,10 +115,19 @@ aside {
   padding: 6px;
 }
 
+.moves {
+  height: 100%;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
 .buttons {
   display: flex;
   justify-content: space-between;
-  padding: 8px;
+  width: 100%;
 }
 
 .next,
@@ -116,13 +143,8 @@ aside {
   pointer-events: auto;
 }
 
-.alert p.highlight {
-  background-color: rgba(
-    255,
-    255,
-    0,
-    0.6
-  ); /* Light yellow background for highlighting */
+.moves p.highlight {
+  background-color: rgba(255, 255, 0, 0.6);
   font-weight: bold;
   padding: 5px;
   border-radius: 2px;
@@ -132,4 +154,51 @@ svg {
   height: 70%;
   width: 70%;
   fill: #d8cab8;
+}
+
+@media (min-width: 768px) {
+  .board {
+    height: 55vmin;
+    width: 55vmin;
+  }
+
+  aside {
+    width: 55vmin;
+    height: 55vmin;
+  }
+
+  main {
+    margin: 2rem 0px;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .board {
+    height: 80vh;
+    width: 80vh;
+    margin: 0;
+  }
+
+  aside {
+    width: 45vh;
+    height: 80vh;
+    flex-shrink: 0;
+  }
+
+  aside p {
+    font-size: 24px;
+  }
+
+  .moves {
+    width: 40vh;
+    overflow-x: hidden;
+  }
 }
